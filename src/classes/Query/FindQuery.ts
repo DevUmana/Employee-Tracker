@@ -10,18 +10,21 @@ class FindQuery {
     const result = await pool.query(sql, [firstName, lastName]);
     return result.rows[0].id;
   }
+
   // Find department ID
   static async findDepartmentID(departmentName: string) {
     const sql = "SELECT id FROM department WHERE name = $1";
     const result = await pool.query(sql, [departmentName]);
     return result.rows[0].id;
   }
+
   // Find role ID
   static async findRoleID(title: string) {
     const sql = "SELECT id FROM role WHERE title = $1";
     const result = await pool.query(sql, [title]);
     return result.rows[0].id;
   }
+  
   // Find manager ID
   static async findManagerID(
     managerFirstName: string,

@@ -21,6 +21,7 @@ class GetQuery {
     });
     return rows;
   }
+
   // Get all employees First and Last name
   static async getAllEmployeesName() {
     const employees: string[] = [];
@@ -34,6 +35,7 @@ class GetQuery {
     }
     return employees;
   }
+
   // Get all employees by manager
   static async getAllEmployeesByManager(manager: string) {
     const sql =
@@ -51,6 +53,7 @@ class GetQuery {
     });
     return rows;
   }
+
   // Get all employees by department
   static async getAllEmployeesByDepartment(department: string) {
     const sql =
@@ -69,12 +72,14 @@ class GetQuery {
     });
     return rows;
   }
+
   // Get all departments ID and name
   static async getAllDepartments() {
     const sql = "SELECT id, name FROM department";
     const results = await pool.query(sql);
     return results.rows;
   }
+
   // Get all department names
   static async getDepartmentName() {
     const departments: string[] = [];
@@ -86,6 +91,7 @@ class GetQuery {
     }
     return departments;
   }
+
   // Get all roles ID and title
   static async getAllRoles() {
     const roles: string[] = [];
@@ -97,6 +103,7 @@ class GetQuery {
     }
     return roles;
   }
+
   // Get all role titles
   static async getRoleTitle() {
     const roles: string[] = [];
@@ -108,6 +115,7 @@ class GetQuery {
     }
     return roles;
   }
+
   // Get Manager name
   static async getManager() {
     const managers: string[] = [];
@@ -122,6 +130,7 @@ class GetQuery {
     }
     return managers;
   }
+
   // Get all roles with their departments
   static async getAllRolesAndDepartment() {
     const sql =
@@ -138,14 +147,13 @@ class GetQuery {
     return rows;
   }
 
-  // Get Salary by department
+  // Get total salary by department
   static async getTotalSalariesByDepartment(department: string) {
-    // Get the total salaries by department using SUM AS and GROUP By
-    const sql = "SELECT SUM(role.salary) FROM role JOIN department ON role.department_id = department.id WHERE department.name = $1 GROUP BY department.name";
+    const sql =
+      "SELECT SUM(role.salary) FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id WHERE department.name = $1";
     const results = await pool.query(sql, [department]);
     return results.rows[0].sum;
   }
-
 }
 
 export default GetQuery;
