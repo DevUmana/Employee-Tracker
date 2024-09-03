@@ -8,6 +8,7 @@ class DeleteQuery {
     const sql = "DELETE FROM employee WHERE id = $1";
     await pool.query(sql, [employeeId]);
   }
+  
   // Delete department and all roles associated with it
   static async deleteDepartment(departmentId: number) {
     const sqlRole = "DELETE FROM role WHERE department_id = $1";
@@ -21,7 +22,7 @@ class DeleteQuery {
   static async deleteRole(roleId: number) {
     const sqlEmployee = "DELETE FROM employee WHERE role_id = $1";
     await pool.query(sqlEmployee, [roleId]);
-    
+
     const sql = "DELETE FROM role WHERE id = $1";
     await pool.query(sql, [roleId]);
   }
