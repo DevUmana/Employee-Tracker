@@ -3,6 +3,8 @@ import { pool, connectToDb } from "../../connection.js";
 await connectToDb();
 
 class FindQuery {
+  // EMPLOYEE QUERIES
+
   // Find employee ID
   static async findEmployeeID(firstName: string, lastName: string) {
     const sql =
@@ -11,12 +13,7 @@ class FindQuery {
     return result.rows[0].id;
   }
 
-  // Find department ID
-  static async findDepartmentID(departmentName: string) {
-    const sql = "SELECT id FROM department WHERE name = $1";
-    const result = await pool.query(sql, [departmentName]);
-    return result.rows[0].id;
-  }
+  // ROLE QUERIES
 
   // Find role ID
   static async findRoleID(title: string) {
@@ -24,7 +21,18 @@ class FindQuery {
     const result = await pool.query(sql, [title]);
     return result.rows[0].id;
   }
-  
+
+  // DEPARTMENT QUERIES
+
+  // Find department ID
+  static async findDepartmentID(departmentName: string) {
+    const sql = "SELECT id FROM department WHERE name = $1";
+    const result = await pool.query(sql, [departmentName]);
+    return result.rows[0].id;
+  }
+
+  // MANAGER QUERIES
+
   // Find manager ID
   static async findManagerID(
     managerFirstName: string,

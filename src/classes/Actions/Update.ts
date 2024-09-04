@@ -5,6 +5,8 @@ import FindQuery from "../Query/FindQuery.js";
 import Cli from "../Cli.js";
 
 class Update {
+  // EMPLOYEE ACTIONS
+
   // Update employee roles
   static async updateEmployeeRole() {
     const employees = await GetQuery.getAllEmployeesName();
@@ -41,6 +43,8 @@ class Update {
         Cli.Update();
       });
   }
+
+  // MANAGER ACTIONS
 
   // Update employee managers
   static async updateEmployeeManager() {

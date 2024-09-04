@@ -3,6 +3,8 @@ import { pool, connectToDb } from "../../connection.js";
 await connectToDb();
 
 class GetQuery {
+  // EMPLOYEE QUERIES
+
   // Get all employees with their roles, departments, salaries, and managers
   static async getAllEmployee() {
     const sql =
@@ -36,6 +38,49 @@ class GetQuery {
     return employees;
   }
 
+  // ROLE QUERIES
+
+  // Get all roles ID and title
+  static async getAllRoles() {
+    const roles: string[] = [];
+    const sql = "SELECT id, title FROM role";
+    const results = await pool.query(sql);
+
+    for (let i = 0; i < results.rows.length; i++) {
+      roles.push(results.rows[i].title);
+    }
+    return roles;
+  }
+
+  // Get all role titles
+  static async getRoleTitle() {
+    const roles: string[] = [];
+    const sql = "SELECT title FROM role";
+    const results = await pool.query(sql);
+
+    for (let i = 0; i < results.rows.length; i++) {
+      roles.push(results.rows[i].title);
+    }
+    return roles;
+  }
+
+  // MANAGER QUERIES
+
+  // Get Manager name
+  static async getManager() {
+    const managers: string[] = [];
+    const sql =
+      "SELECT first_name, last_name FROM employee WHERE id IN (SELECT DISTINCT manager_id FROM employee)";
+    const results = await pool.query(sql);
+
+    for (let i = 0; i < results.rows.length; i++) {
+      managers.push(
+        `${results.rows[i].first_name} ${results.rows[i].last_name}`
+      );
+    }
+    return managers;
+  }
+
   // Get all employees by manager
   static async getAllEmployeesByManager(manager: string) {
     const sql =
@@ -53,6 +98,8 @@ class GetQuery {
     });
     return rows;
   }
+
+  // DEPARTMENT QUERIES
 
   // Get all employees by department
   static async getAllEmployeesByDepartment(department: string) {
@@ -91,46 +138,6 @@ class GetQuery {
     }
     return departments;
   }
-
-  // Get all roles ID and title
-  static async getAllRoles() {
-    const roles: string[] = [];
-    const sql = "SELECT id, title FROM role";
-    const results = await pool.query(sql);
-
-    for (let i = 0; i < results.rows.length; i++) {
-      roles.push(results.rows[i].title);
-    }
-    return roles;
-  }
-
-  // Get all role titles
-  static async getRoleTitle() {
-    const roles: string[] = [];
-    const sql = "SELECT title FROM role";
-    const results = await pool.query(sql);
-
-    for (let i = 0; i < results.rows.length; i++) {
-      roles.push(results.rows[i].title);
-    }
-    return roles;
-  }
-
-  // Get Manager name
-  static async getManager() {
-    const managers: string[] = [];
-    const sql =
-      "SELECT first_name, last_name FROM employee WHERE id IN (SELECT DISTINCT manager_id FROM employee)";
-    const results = await pool.query(sql);
-
-    for (let i = 0; i < results.rows.length; i++) {
-      managers.push(
-        `${results.rows[i].first_name} ${results.rows[i].last_name}`
-      );
-    }
-    return managers;
-  }
-
   // Get all roles with their departments
   static async getAllRolesAndDepartment() {
     const sql =

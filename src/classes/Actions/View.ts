@@ -4,24 +4,12 @@ import FormattedTable from "../FormattedTable.js";
 import Cli from "../Cli.js";
 
 class View {
+  // EMPLOYEE ACTIONS
+
   // View all employees
   static async viewAllEmployees() {
     const employees = await GetQuery.getAllEmployee();
     FormattedTable.table(employees);
-    Cli.View();
-  }
-
-  // View all departments
-  static async viewAllDepartments() {
-    const departments = await GetQuery.getAllDepartments();
-    FormattedTable.table(departments);
-    Cli.View();
-  }
-
-  // View all roles
-  static async viewAllRoles() {
-    const roles = await GetQuery.getAllRolesAndDepartment();
-    FormattedTable.table(roles);
     Cli.View();
   }
 
@@ -69,6 +57,24 @@ class View {
       });
   }
 
+  // ROLE ACTIONS
+
+  // View all roles
+  static async viewAllRoles() {
+    const roles = await GetQuery.getAllRolesAndDepartment();
+    FormattedTable.table(roles);
+    Cli.View();
+  }
+
+  // DEPARTMENT ACTIONS
+
+  // View all departments
+  static async viewAllDepartments() {
+    const departments = await GetQuery.getAllDepartments();
+    FormattedTable.table(departments);
+    Cli.View();
+  }
+
   // View total salaries by department
   static async viewTotalSalariesByDepartment() {
     const departments = await GetQuery.getDepartmentName();
@@ -85,10 +91,16 @@ class View {
         const totalSalaries = await GetQuery.getTotalSalariesByDepartment(
           answers.department
         );
-        console.log(
-          `Total utilized budget for ${answers.department}: $${totalSalaries}`
-        );
-        Cli.View();
+
+        if (totalSalaries.length === 0) {
+          console.log("There are no employees in this department.");
+          Cli.View();
+        } else {
+          console.log(
+            `Total utilized budget for ${answers.department}: $${totalSalaries}`
+          );
+          Cli.View();
+        }
       });
   }
 }

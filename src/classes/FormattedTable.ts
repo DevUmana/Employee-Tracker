@@ -4,6 +4,11 @@ import { Transform } from "stream";
 class FormattedTable {
   // Create a table from an array of objects and print it to the console formatted
   static table(input: any) {
+    if (input.length === 0) {
+      console.log("No results found\n\n");
+      return;
+    }
+
     const ts = new Transform({
       transform(chunk, _enc, cb) {
         cb(null, chunk);

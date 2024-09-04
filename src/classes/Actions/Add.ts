@@ -5,6 +5,8 @@ import FindQuery from "../Query/FindQuery.js";
 import Cli from "../Cli.js";
 
 class Add {
+  // EMPLOYEE ACTIONS
+
   // Add an employee
   static async addEmployee() {
     const roles = await GetQuery.getAllRoles();
@@ -47,7 +49,10 @@ class Add {
         } else {
           const managerName = answers.manager.split(" ");
 
-          managerID = await FindQuery.findManagerID(managerName[0], managerName[1]);
+          managerID = await FindQuery.findManagerID(
+            managerName[0],
+            managerName[1]
+          );
         }
         // insert the employee into the database
         await AddQuery.addEmployee(
@@ -60,21 +65,7 @@ class Add {
       });
   }
 
-  // Add a department
-  static async addDepartment(): Promise<void> {
-    inquirer
-      .prompt([
-        {
-          type: "input",
-          name: "name",
-          message: "Enter the department name:",
-        },
-      ])
-      .then(async (answers) => {
-        await AddQuery.addDepartment(answers.name);
-        Cli.Add();
-      });
-  }
+  // ROLE ACTIONS
 
   // Add a role
   static async addRole() {
@@ -101,9 +92,29 @@ class Add {
       ])
       .then(async (answers) => {
         // find the department id from the department name array index
-        const departmentID = await FindQuery.findDepartmentID(answers.department);
+        const departmentID = await FindQuery.findDepartmentID(
+          answers.department
+        );
         // insert the role into the database
         AddQuery.addRole(answers.role, Number(answers.salary), departmentID);
+        Cli.Add();
+      });
+  }
+
+  // DEPARTMENT ACTIONS
+
+  // Add a department
+  static async addDepartment(): Promise<void> {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "name",
+          message: "Enter the department name:",
+        },
+      ])
+      .then(async (answers) => {
+        await AddQuery.addDepartment(answers.name);
         Cli.Add();
       });
   }
