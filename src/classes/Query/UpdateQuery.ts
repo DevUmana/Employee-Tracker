@@ -1,6 +1,6 @@
 import { pool, connectToDb } from "../../connection.js";
 
-await connectToDb();
+await connectToDb("UpdateQuery");
 
 class UpdateQuery {
   // EMPLOYEE QUERIES
