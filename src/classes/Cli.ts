@@ -5,6 +5,8 @@ import Delete from "./Actions/Delete.js";
 import Update from "./Actions/Update.js";
 
 class Cli {
+  // VIEW PROMPT
+
   static View() {
     inquirer
       .prompt([
@@ -54,6 +56,8 @@ class Cli {
       });
   }
 
+  // ADD PROMPT
+
   static Add() {
     inquirer
       .prompt([
@@ -91,6 +95,8 @@ class Cli {
       });
   }
 
+  // DELETE PROMPT
+
   static Delete() {
     inquirer
       .prompt([
@@ -127,6 +133,8 @@ class Cli {
         }
       });
   }
+
+  // UPDATE PROMPT
 
   static Update() {
     inquirer
@@ -166,6 +174,8 @@ class Cli {
     console.log("Goodbye!");
     process.exit();
   }
+
+  // START PROMPT
 
   // Start the CLI
   static startCli() {
