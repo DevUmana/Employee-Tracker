@@ -25,7 +25,7 @@ Employee Tracker is a command-line interface (CLI) tool designed to manage compa
 
 ## Usage
 
-Application Walkthrough [https://drive.google.com/file/d/1AehZgQy9NtepPyEDaB1US_WUt2g2uB2J/view]([https://drive.google.com/file/d/1ezzbfAqMiSypdH-sfrlB20n8Wh_mAm1p/view](https://drive.google.com/file/d/1AehZgQy9NtepPyEDaB1US_WUt2g2uB2J/view))
+Application Walkthrough [https://drive.google.com/file/d/1AehZgQy9NtepPyEDaB1US_WUt2g2uB2J/view](https://drive.google.com/file/d/1AehZgQy9NtepPyEDaB1US_WUt2g2uB2J/view)
 
 ## License
 
@@ -88,8 +88,8 @@ I am open to any feedback and improvements that others may have!
 
 ## Authors and acknowledgment
 
-Badge information was pulled from [https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
-Formatted Table was pulled from [[https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba](https://stackoverflow.com/questions/49618069/remove-index-from-console-table)]([https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba](https://stackoverflow.com/questions/49618069/remove-index-from-console-table))
+* Badge information was pulled from [https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
+* Formatted Table was pulled from [https://stackoverflow.com/questions/49618069/remove-index-from-console-table](https://stackoverflow.com/questions/49618069/remove-index-from-console-table)
 
 ## Questions
 
