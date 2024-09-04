@@ -54,6 +54,7 @@ class Add {
             managerName[1]
           );
         }
+
         // insert the employee into the database
         await AddQuery.addEmployee(
           answers.first_name,
@@ -95,6 +96,7 @@ class Add {
         const departmentID = await FindQuery.findDepartmentID(
           answers.department
         );
+
         // insert the role into the database
         AddQuery.addRole(answers.role, Number(answers.salary), departmentID);
         Cli.Add();
