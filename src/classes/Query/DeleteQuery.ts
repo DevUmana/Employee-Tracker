@@ -26,6 +26,9 @@ class DeleteQuery {
 
   // Delete department and all roles associated with it
   static async deleteDepartment(departmentId: number) {
+    const sqlEmployee = "DELETE FROM employee WHERE role_id IN (SELECT id FROM role WHERE department_id = $1)";
+    await pool.query(sqlEmployee, [departmentId]);
+
     const sqlRole = "DELETE FROM role WHERE department_id = $1";
     await pool.query(sqlRole, [departmentId]);
 
